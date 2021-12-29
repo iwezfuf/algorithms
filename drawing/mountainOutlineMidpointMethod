@@ -1,0 +1,27 @@
+import tkinter
+import random
+
+height = 800
+width = 1500
+canvas = tkinter.Canvas(height=height, width=width, background="black")
+canvas.pack()
+
+
+def mountain(start=[0,height//2], end=[width, height//2], factor=height//2, maxLevel=10, currentLevel=1):
+    if currentLevel == maxLevel:
+        canvas.create_line(start[0], start[1], end[0], end[1], fill="white")
+    else:
+        midpoint = [(start[0]+end[0])//2, (start[1]+end[1])//2]
+        midpoint[1] += random.randrange(-factor,factor)
+        mountain(start, midpoint, factor//2, maxLevel, currentLevel+1)
+        mountain(midpoint, end, factor//2, maxLevel, currentLevel+1)
+
+
+def run():
+    canvas.create_rectangle(0,0,width,height,fill="black")
+    mountain([0,height//2], [width, height//2], height//2, 10, 1)
+
+        
+newMountain = tkinter.Button(text="New mountain", command=run)
+newMountain.pack(side="left")
+canvas.mainloop()
