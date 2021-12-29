@@ -1,0 +1,4 @@
+# http://algorithmicbotany.org/papers/graphical.gi86.pdf
+# str 6
+
+l_system(["S", "G", "H", "T", "L"], "SLFFF", [["S","[+++G][---G]TS"],["G","+H[-G]L"],["H","-G[+H]L"],["T","TL"],["L","[-FFF][+FFF]F"]], 18, 13)
