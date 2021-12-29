@@ -12,14 +12,15 @@ for i in range(0,width//5):
     for j in range(0,height//5):
         heightmap[i].append(random.randrange(0,255))
 
-
+# S tym? Bez toho? Obidve su dobre
+'''
 for i in range(len(heightmap)):
     for j in range(len(heightmap[0])):
         i = i%(len(heightmap)-1)
         j = j%(len(heightmap[0])-1)
         neighbors = (heightmap[i-1][j], heightmap[i+1][j], heightmap[i-1][j-1], heightmap[i-1][j+1], heightmap[i+1][j+1], heightmap[i+1][j-1], heightmap[i][j+1], heightmap[i][j-1])            
         heightmap[i][j] = sum(neighbors)//len(neighbors)
-
+'''
 
 for i in range(0,width//5):
     for j in range(0,height//5):
