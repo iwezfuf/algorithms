@@ -18,29 +18,42 @@ t.speed(10)
 
 
 def l_system(alphabet, axiom, rules, angle=90, iterations=4):
+
+    def implementRule(rule):
+        if len(rule[1]) > 1:
+            res = random.choices(rule[1][0], weights = rule[1][1], k = 1)[0]
+        elif type(rule[1][0]) == list:
+            res = random.choice(rule[1][0])
+        else:
+            res = rule[1][0]
+        return res
+    
+    
     steps = axiom
     for iteration in range(iterations):
         new_steps = []
-        for letter in steps:
+        for i in range(len(steps)):
             for rule in rules:
-                if letter in rule[0]:
-                    if len(rule[1]) > 1:
-                        new_steps.append(random.choices(rule[1][0], weights = rule[1][1], k = 1)[0])
-                    elif type(rule[1][0]) == list:
-                        new_steps.append(random.choice(rule[1][0]))
-                    else:
-                        new_steps.append(rule[1][0])
-                    break
+                if len(rule[0]) > 1:
+                    try:
+                        if rule[0] in steps[i-1]+"<"+steps[i]+">"+steps[i+1]:
+                            new_steps.append(implementRule(rule))
+                            break
+                    except: pass
                         
+                elif steps[i] == rule[0]:
+                    new_steps.append(implementRule(rule))
+                    break
+
                     
             else:
-                new_steps.append(letter)
+                new_steps.append(steps[i])
         steps = "".join(new_steps)
 
     stack = []
     for step in steps:
         if any([step == i for i in alphabet]):
-            t.forward(5)
+            t.forward(10)
         elif step == "+":
             t.left(angle)
         elif step == "-":
@@ -56,3 +69,6 @@ def l_system(alphabet, axiom, rules, angle=90, iterations=4):
                 
 
 #l_system(["F", "G"], "F", [["F",[["F+G", "F+"], [0.995,0.005]]], ["G",["F-G"]]], 90, 10)
+
+#t.left(90)
+#l_system(["T", "R", "L", "F"], "T", [["T",["R+[T]--[--L]R[++L]-[T]++T"]], ["R",["F[--L][++L]F"]], ["R",["[+FX-FX-FX+I+FX-FX-FX]"]], ["F>X",["FX"]], ["F",["FF"]]], 30, 4)
