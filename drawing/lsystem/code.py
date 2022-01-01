@@ -24,8 +24,15 @@ def l_system(alphabet, axiom, rules, angle=90, iterations=4):
         for letter in steps:
             for rule in rules:
                 if letter in rule[0]:
-                    new_steps.append(rule[1])
+                    if len(rule[1]) > 1:
+                        new_steps.append(random.choices(rule[1][0], weights = rule[1][1], k = 1)[0])
+                    elif type(rule[1][0]) == list:
+                        new_steps.append(random.choice(rule[1][0]))
+                    else:
+                        new_steps.append(rule[1][0])
                     break
+                        
+                    
             else:
                 new_steps.append(letter)
         steps = "".join(new_steps)
@@ -33,7 +40,7 @@ def l_system(alphabet, axiom, rules, angle=90, iterations=4):
     stack = []
     for step in steps:
         if any([step == i for i in alphabet]):
-            t.forward(2)
+            t.forward(5)
         elif step == "+":
             t.left(angle)
         elif step == "-":
@@ -48,5 +55,4 @@ def l_system(alphabet, axiom, rules, angle=90, iterations=4):
             t.down()
                 
 
-
-#l_system(["F", "G"], "F", [["F","F+G"], ["G","F-G"]], 90, 10)    # Dragon curve
+#l_system(["F", "G"], "F", [["F",[["F+G", "F+"], [0.995,0.005]]], ["G",["F-G"]]], 90, 10)
