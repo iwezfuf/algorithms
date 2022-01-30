@@ -502,5 +502,32 @@ def stringEditDistance(word1, word2, cost=0):
         stringEditDistance(word1[:-1], word2[:-1], cost + 1),
     )
 
-
 #print(stringEditDistance("kitten", "sitting"))
+
+
+def stringEditDistEff(firstword, secondword):
+
+    len1, len2 = len(firstword), len(secondword)
+    
+    listOfCosts = [[0 for j in range(len2+1)] for i in range(len1+1)]
+
+    for i in range(len1+1):
+        for j in range(len2+1):
+            word1, word2 = firstword[:i], secondword[:j]
+            if min(len(word1), len(word2)) == 0:
+                listOfCosts[i][j] = max(len(word1), len(word2))
+
+            elif word1[-1] == word2[-1]:
+                listOfCosts[i][j] = listOfCosts[i-1][j-1]
+            
+            else: listOfCosts[i][j] =  min(
+                listOfCosts[i-1][j] + 1,
+                listOfCosts[i][j-1] + 1,
+                listOfCosts[i-1][j-1] + 1
+            )
+    for i in listOfCosts:
+        print(*i)
+    return listOfCosts[len1-1][len2-1]
+
+
+print(stringEditDistEff("kitten", "sitting"))
