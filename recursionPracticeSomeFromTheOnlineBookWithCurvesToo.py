@@ -489,32 +489,18 @@ Use dynamic programming techniques to develop an algorithm that gives you the sm
 """
 
 
-def stringEditDistance(word1, word2, cost=0, tried=[]):
-    if word1 == word2:
-        return cost
+def stringEditDistance(word1, word2, cost=0):
+    if min(len(word1), len(word2)) == 0:
+        return cost + max(len(word1), len(word2))
 
-    if [word1, word2] in tried:
-        return ##
+    if word1[-1] == word2[-1]:
+        return stringEditDistance(word1[:-1], word2[:-1], cost)
     
-    tried.append([word1, word2])
-    
-    costs = []
-    for i in range(len(word1)):
-        costs.append(stringEditDistance(word1[:i]+word1[i+1:], word2, cost+20, tried))
-
-        abc = list(word2)
-        
-        if len(word2) > i:
-            costs.append(stringEditDistance(word1[:i]+word2[i]+word1[i+1:], word2, cost+5, tried))
-
-            
-        for letter in abc:
-            costs.append(stringEditDistance(word1[:i]+letter+word1[i:], word2, cost+20, tried))
-    
-    cost += min(costs, default=0)
-
-    return cost
+    return min(
+        stringEditDistance(word1[:-1], word2, cost + 1),
+        stringEditDistance(word1, word2[:-1], cost + 1),
+        stringEditDistance(word1[:-1], word2[:-1], cost + 1),
+    )
 
 
-
-#print(stringEditDistance("aligator", "alligator"))
+#print(stringEditDistance("kitten", "sitting"))
