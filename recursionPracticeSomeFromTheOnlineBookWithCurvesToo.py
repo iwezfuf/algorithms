@@ -488,8 +488,9 @@ is used by spell check programs to provide suggestions for words that are close 
 Use dynamic programming techniques to develop an algorithm that gives you the smallest edit distance between any two words.
 """
 
-
 def stringEditDistance(word1, word2, cost=0):
+    global a
+    a += 1
     if min(len(word1), len(word2)) == 0:
         return cost + max(len(word1), len(word2))
 
@@ -504,7 +505,6 @@ def stringEditDistance(word1, word2, cost=0):
 
 #print(stringEditDistance("kitten", "sitting"))
 
-
 def stringEditDistEff(firstword, secondword):
 
     len1, len2 = len(firstword), len(secondword)
@@ -512,7 +512,13 @@ def stringEditDistEff(firstword, secondword):
     listOfCosts = [[0 for j in range(len2+1)] for i in range(len1+1)]
 
     for i in range(len1+1):
-        for j in range(len2+1):
+        listOfCosts[i][0] = i
+    
+    for i in range(len2+1):
+        listOfCosts[0][i] = i
+
+    for i in range(1, len1+1):
+        for j in range(1, len2+1):
             word1, word2 = firstword[:i], secondword[:j]
             if min(len(word1), len(word2)) == 0:
                 listOfCosts[i][j] = max(len(word1), len(word2))
@@ -525,9 +531,7 @@ def stringEditDistEff(firstword, secondword):
                 listOfCosts[i][j-1] + 1,
                 listOfCosts[i-1][j-1] + 1
             )
-    for i in listOfCosts:
-        print(*i)
-    return listOfCosts[len1-1][len2-1]
 
+    return listOfCosts[len1][len2]
 
-print(stringEditDistEff("kitten", "sitting"))
+#print(stringEditDistEff("kitten", "sitting"))
