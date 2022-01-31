@@ -23,8 +23,8 @@ def palindrome(s):
 import turtle
 import random
 
-##t = turtle.Turtle()
-##myWin = turtle.Screen()
+t = turtle.Turtle()
+myWin = turtle.Screen()
 
 def drawSpiral(myTurtle, lineLen):
     if lineLen > 0:
@@ -51,7 +51,7 @@ def tree(t, branchLen, width):
         t.pendown()
 
 #turtle.tracer(0, 0)
-##t.penup()
+#t.penup()
 ##t.left(90)
 ##t.backward(200)
 ##t.speed(10000)
@@ -130,8 +130,8 @@ def factorial(n):
     
 
 
-##t = turtle.Turtle()
-##myWin = turtle.Screen()
+t = turtle.Turtle()
+myWin = turtle.Screen()
 ##
 ###turtle.tracer(0, 0)
 ##t.penup()
@@ -248,131 +248,57 @@ def fib(n):
 #print(fib(9))
 
 
-#t.up()
-#t.goto(0,0)
-#t.down()
-
-
-#t.right(90)
-
-##t.goto(200,-500)
-##t.begin_fill()
-##t.circle(1000)
-##t.end_fill()
-##
-##t.up()
-##t.goto(0,0)
-###t.right(90)
-##t.down()
-##t.hideturtle()
-##turtle.colormode(255)
-##t.pencolor((255,255,255))
-
 def dragonCurve(n, size=200, angle=90):
     if n:
-        t.right(angle/2)
         dragonCurve(n-1, size/1.41421356237, 90)
         t.left(angle)
         dragonCurve(n-1, size/1.41421356237, -90)
-        t.right(angle/2)
     else: t.forward(size)
 
 #turtle.tracer(0, 0)
-
 #dragonCurve(10)
-import time
-##t.speed(2)
 
-def gosperCurve(n, size=150, angle=60, ang=0, noi=60):
-##    if n:
-##        t.right(ang)
-##        gosperCurve(n-1, size/2, 60)
-##        t.left(60)
-##        if angle == 60:
-##            gosperCurve(n-1, size/2, -60)
-##        else:
-##            gosperCurve(n-1, size/2, -60)
-##            gosperCurve(n-1, size/2, -60)
-##        t.left(120)
-##        gosperCurve(n-1, size/2, -60, 60)
-##        t.right(angle)
-##        gosperCurve(n-1, size/2, 60)
-##        t.right(120)
-##        if angle == 60:
-##            gosperCurve(n-1, size/2, 60, -60)
-##            gosperCurve(n-1, size/2, 60, -60)
-##        else: gosperCurve(n-1, size/2, 60, -60)
-##        t.right(60)
-##        gosperCurve(n-1, size/2, -60)
-##
-##        
-##    else:
-##        t.forward(size)
+t.speed(0.5)
 
-##    if n:
-##        t.color("orange")
-##        gosperCurve(n-1, size/2)
-##        t.color("blue")
-##        if angle == 60:
-##            gosperCurve(n-1, size/2, -60, 60)
-##        else:
-##            gosperCurve(n-1, size/2, -60, 60)
-##            gosperCurve(n-1, size/2, -60)
-##        t.left(180)
-##        t.color("green")
-##        gosperCurve(n-1, size/2, -60, -60)
-##        #t.right(angle)
-##        t.color("brown")
-##        gosperCurve(n-1, size/2, 60, -angle)
-##        t.right(120)
-##        t.color("red")
-##        if angle == 60:
-##            gosperCurve(n-1, size/2, -60)
-##            gosperCurve(n-1, size/2, -60)
-##        else: gosperCurve(n-1, size/2, -60)
-##        t.right(180)
-##        t.color("black")
-##        gosperCurve(n-1, size/2, 60, 120)
-##        t.left(60)
-##
-##        
-##    else:
-##        t.left(ang)
-##        t.forward(size)
-
-
+def gosperCurve(n, type=True):
     if n:
-        gosperCurve(n-1, size/2, angle, 60)
-        #t.left(60)
-        if angle == 60:
-            gosperCurve(n-1, size/2, -angle, 120)
+        if type:
+            gosperCurve(n-1, type)
+            t.right(60)
+            gosperCurve(n-1, not type)
+            t.right(120)
+            gosperCurve(n-1, not type)
+            t.left(60)
+            gosperCurve(n-1, type)
+            t.left(120)
+            gosperCurve(n-1, type)
+            gosperCurve(n-1, type)
+            t.left(60)
+            gosperCurve(n-1, not type)
+            t.right(60)
+
         else:
-            gosperCurve(n-1, size/2, -angle)
-            gosperCurve(n-1, size/2, -angle, 120)
-        #t.left(120)
-        gosperCurve(n-1, size/2, -angle, -angle, -60)
-        #t.right(angle)
-        gosperCurve(n-1, size/2, angle, -120)
-        #t.right(120)
-        if angle == 60:
-            gosperCurve(n-1, size/2, angle)
-            gosperCurve(n-1, size/2, angle, -60, -60)
-        else: gosperCurve(n-1, size/2, angle, -60, -60)
-        #t.right(60)
-        gosperCurve(n-1, size/2, angle, noi)
-        #t.left(60)
+            t.left(60)
+            gosperCurve(n-1, type)
+            t.right(60)
+            gosperCurve(n-1, not type)
+            gosperCurve(n-1, not type)
+            t.right(120)
+            gosperCurve(n-1, not type)
+            t.right(60)
+            gosperCurve(n-1, type)
+            t.left(120)
+            gosperCurve(n-1, type)
+            t.left(60)
+            gosperCurve(n-1, not type)
 
-        
-    else:
-        t.forward(size)
-        t.left(ang)
+    else: t.forward(10)
 
 
-#gosperCurve(2)
+#gosperCurve(3)
 
 
-
-##myWin.exitonclick()
+myWin.exitonclick()
         
 """
 Write a program to solve the following problem:
