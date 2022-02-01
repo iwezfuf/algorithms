@@ -255,47 +255,47 @@ def dragonCurve(n, size=200, angle=90):
         dragonCurve(n-1, size/1.41421356237, -90)
     else: t.forward(size)
 
-#turtle.tracer(0, 0)
+turtle.tracer(0, 0)
 #dragonCurve(10)
 
 t.speed(0.5)
 
-def gosperCurve(n, type=True):
+def gosperCurve(n, type=1):
     if n:
         if type:
-            gosperCurve(n-1, type)
+            gosperCurve(n-1, 1)
             t.right(60)
-            gosperCurve(n-1, not type)
+            gosperCurve(n-1, 0)
             t.right(120)
-            gosperCurve(n-1, not type)
+            gosperCurve(n-1, 0)
             t.left(60)
-            gosperCurve(n-1, type)
+            gosperCurve(n-1, 1)
             t.left(120)
-            gosperCurve(n-1, type)
-            gosperCurve(n-1, type)
+            gosperCurve(n-1, 1)
+            gosperCurve(n-1, 1)
             t.left(60)
-            gosperCurve(n-1, not type)
+            gosperCurve(n-1, 0)
             t.right(60)
 
         else:
             t.left(60)
-            gosperCurve(n-1, type)
+            gosperCurve(n-1, 1)
             t.right(60)
-            gosperCurve(n-1, not type)
-            gosperCurve(n-1, not type)
+            gosperCurve(n-1, 0)
+            gosperCurve(n-1, 0)
             t.right(120)
-            gosperCurve(n-1, not type)
+            gosperCurve(n-1, 0)
             t.right(60)
-            gosperCurve(n-1, type)
+            gosperCurve(n-1, 1)
             t.left(120)
-            gosperCurve(n-1, type)
+            gosperCurve(n-1, 1)
             t.left(60)
-            gosperCurve(n-1, not type)
+            gosperCurve(n-1, 0)
 
     else: t.forward(10)
 
 
-#gosperCurve(3)
+#gosperCurve(4)
 
 
 myWin.exitonclick()
