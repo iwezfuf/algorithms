@@ -17,5 +17,4 @@ for i in pi:
     t.setheading(36*int(i))
     t.forward(0.4)
 
-turtle.getscreen().getcanvas().postscript(file='image.ps')
 myWin.mainloop()
